@@ -8,8 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b73ed9922a4244c87067bac1ef380b, type: 3}
-  m_Name: Connect1
+  m_Script: {fileID: 11500000, guid: a631b1c321113d149b107338944ddcb7, type: 3}
+  m_Name: Level 2
   m_EditorClassIdentifier: 
-  maxTurns: 3
-  typeMatch: 1
+  dimensions: {x: 5, y: 4}
+  rule: {fileID: 0}
+  fruitTypes: 0

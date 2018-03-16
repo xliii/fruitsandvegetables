@@ -7,8 +7,6 @@ public class The
     public static Fruit SelectedFruit { get; set; }
     
     public static Line Line { get; set; }
-
-    public static MatchRule MatchRule { get; set; }
     
     public static int Seed { get; set; }
     
@@ -16,14 +14,19 @@ public class The
     
     public static Config Config { get; set; }
 
+    public static MatchRule MatchRule
+    {
+        get { return Config.levelConfig.rule; }
+    }
+
     public static int Width
     {
-        get { return Config.dimensions.x; }
+        get { return Config.levelConfig.dimensions.x; }
     }
 
     public static int Height
     {
-        get { return Config.dimensions.y; }
+        get { return Config.levelConfig.dimensions.y; }
     }
 
     public static FruitGenerator Generator

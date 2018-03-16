@@ -12,6 +12,13 @@ public class ConfigEditor : Editor
 
 		Config config = (Config) target;
 
+		if (The.Config == null)
+		{
+			The.Config = config;
+			The.Generator = config.GetComponent<FruitGenerator>();
+			Debug.Log("Editor: Initialize");
+		}
+
 		useSeed = GUILayout.Toggle(useSeed, "Use seed");
 		if (!config.validSize())
 		{
@@ -33,7 +40,7 @@ public class ConfigEditor : Editor
 
 	string PrintSize(Config config)
 	{
-		return string.Format("{0}x{1}", config.dimensions.x, config.dimensions.y);
+		return string.Format("{0}x{1}", config.levelConfig.dimensions.x, config.levelConfig.dimensions.y);
 	}
 	
 }

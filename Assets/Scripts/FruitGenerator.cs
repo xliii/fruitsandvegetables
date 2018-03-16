@@ -24,18 +24,23 @@ public class FruitGenerator : MonoBehaviour
 		return Init((int) ticks.TotalMinutes);
 	}
 
-	public Fruit GetRandomFruit()
+	private Fruit GetRandomFruit(int fruitTypes)
 	{
-		return fruits[Random.Range(0, fruits.Length)];
+		return fruits[Random.Range(0, fruitTypes)];
 	}
 
 	public List<Fruit> GetRandomFruits(int size)
+	{
+		return GetRandomFruits(size, fruits.Length);
+	}
+
+	public List<Fruit> GetRandomFruits(int size, int fruitTypes)
 	{
 		var fruits = new List<Fruit>();
 		int half = size / 2;
 		for (var i = 0; i < half; i++)
 		{
-			fruits.Add(GetRandomFruit());
+			fruits.Add(GetRandomFruit(fruitTypes));
 		}		
 		fruits.AddRange(fruits);
 		Util.Shuffle(fruits);

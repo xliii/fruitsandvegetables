@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 public class Config : MonoBehaviour
-{	
-	public MatchRule rule;	
-	public Vector2Int dimensions;	
+{
+
+	public Selection selection;
+	public LevelConfig levelConfig;
 	public RectTransform boardContainer;
 	public Board board;
 
@@ -14,19 +15,18 @@ public class Config : MonoBehaviour
 
 	void Awake()
 	{
-		if (rule == null)
+		if (levelConfig == null)
 		{
-			Debug.LogError("MatchRule should be set in Config");
+			Debug.LogError("LevelConfig should be set in Config");
 			return;
 		}
 		
 		The.Config = this;
-		The.MatchRule = rule;
 	}
 	
 	public bool validSize()
 	{
-		return Even(dimensions.x) || Even(dimensions.y);
+		return Even(The.Width) || Even(The.Height);
 	}
 	
 	bool Even(float number)
@@ -40,10 +40,10 @@ public class Config : MonoBehaviour
 	public void Generate()
 	{
 		board.Clear();
-		Debug.Log("Generate board: " + dimensions.x + "x" + dimensions.y);
-		setContainerSize(dimensions.x, dimensions.y);
-		int size = dimensions.x * dimensions.y;
-		var fruits = The.Generator.GetRandomFruits(size);
+		Debug.Log("Generate board: " + The.Width + "x" + The.Height);
+		setContainerSize(The.Width, The.Height);
+		int size = The.Width * The.Height;
+		var fruits = The.Generator.GetRandomFruits(size, levelConfig.fruitTypes);
 		for (int i = 0; i < size; i++)
 		{
 			var cell = Instantiate(cellPrefab, board.transform);

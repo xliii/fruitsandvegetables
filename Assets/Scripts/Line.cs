@@ -8,9 +8,12 @@ public class Line : MonoBehaviour
 
 	public float cellSize = 1.1f;
 
+	public Color color;
+
 	void Awake()
 	{
 		The.Line = this;
+		line.material.SetColor("_TintColor", color);
 		Clear();
 	}
 

@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class Fruit : MonoBehaviour
-{
+{	
 	[SerializeField]
-	Button button;
-	[SerializeField]
-	FruitType type;	
+	private FruitType type;
+
+	[HideInInspector]
+	public Button button;	
 
 	public FruitType Type
 	{
 		get { return type; }
+	}
+
+	void Awake()
+	{
+		button = GetComponent<Button>();
 	}
 
 	// Use this for initialization
@@ -65,15 +71,15 @@ public class Fruit : MonoBehaviour
 	{
 		if (The.SelectedFruit == this)
 		{
-			The.SelectedFruit.button.targetGraphic.color = Color.white;
-			The.SelectedFruit = null;	
+			The.SelectedFruit = null;
+			StartCoroutine(The.Config.selection.Deselect(this));
 		}		
 	}
 
 	public void Select()
-	{	
+	{		
 		The.SelectedFruit = this;
-		The.SelectedFruit.button.targetGraphic.color = Color.red;
+		StartCoroutine(The.Config.selection.Select(this));
 	}
 
 	public override string ToString()
