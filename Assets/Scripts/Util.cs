@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Util {
+public static class Util {
 
-	public static List<T> Shuffle<T> (List<T>aList) {
+	public static List<T> Shuffle<T> (this List<T>aList) {
 		
 		var random = new Random ();
 
@@ -19,5 +19,10 @@ public class Util {
 		}
  
 		return aList;
+	}
+
+	public static string AsString<T>(this List<T> list)
+	{
+		return string.Join(", ", Array.ConvertAll(list.ToArray(), pos => pos.ToString()));
 	}
 }

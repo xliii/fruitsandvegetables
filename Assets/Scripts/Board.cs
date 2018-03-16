@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Board : MonoBehaviour
 {
+	private HintProvider hintProvider;
+	
 	private void Awake()
 	{
 		The.Board = this;
+		hintProvider = new HintProvider(this);		
 	}
 
 	public void Clear()
@@ -15,7 +19,7 @@ public class Board : MonoBehaviour
 		}
 	}
 
-	private Fruit Get(int index)
+	public Fruit Get(int index)
 	{		
 		var cell = transform.GetChild(index).GetComponent<Cell>();
 		return cell.Fruit;		
@@ -43,5 +47,11 @@ public class Board : MonoBehaviour
 		}
 
 		return oob;
+	}
+
+	public void GetHint()
+	{
+		var hint = hintProvider.getHint();
+		Debug.Log("HINT: " + hint.AsString());
 	}
 }

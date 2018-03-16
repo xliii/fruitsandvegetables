@@ -43,7 +43,7 @@ public class FruitGenerator : MonoBehaviour
 			fruits.Add(GetRandomFruit(fruitTypes));
 		}		
 		fruits.AddRange(fruits);
-		Util.Shuffle(fruits);
+		fruits.Shuffle();
 		return fruits;
 	}
 }
