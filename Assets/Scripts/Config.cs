@@ -21,6 +21,7 @@ public class Config : MonoBehaviour
 			return;
 		}
 		
+		selection.Init(this);
 		The.Config = this;
 	}
 	
